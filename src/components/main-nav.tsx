@@ -29,7 +29,7 @@ export function MainNav() {
           Docs
         </Link>
         <Link
-          href="/docs/components"
+          href="/docs/ethereum"
           className={cn(
             "transition-colors hover:text-foreground/80",
             pathname.startsWith("/docs/components")
@@ -37,7 +37,7 @@ export function MainNav() {
               : "text-foreground/60"
           )}
         >
-          Components
+          Ethereum (EVM)
         </Link>
       </nav>
     </div>
