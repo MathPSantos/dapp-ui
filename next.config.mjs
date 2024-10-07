@@ -1,8 +1,10 @@
-import { createContentlayerPlugin } from "next-contentlayer2";
+import createMDX from "@next/mdx";
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+};
 
-const withContentLayer = createContentlayerPlugin({});
+const withMDX = createMDX({});
 
-export default withContentLayer(nextConfig);
+export default withMDX(nextConfig);

@@ -4,6 +4,7 @@ import "./globals.css";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Providers } from "@/components/providers";
 
 export const metadata: Metadata = {
   title: {
@@ -67,14 +68,9 @@ export default function RootLayout({
     <html lang="en">
       <head />
       <body className={cn("min-h-screen font-sans antialiased")}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <Providers>
           <div className="relative flex min-h-screen flex-col">{children}</div>
-        </ThemeProvider>
+        </Providers>
       </body>
     </html>
   );

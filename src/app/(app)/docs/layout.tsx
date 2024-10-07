@@ -12,7 +12,7 @@ export default function DocsLayout({ children }: { children: ReactNode }) {
             <DocsSidebarNav config={docsConfig} />
           </ScrollArea>
         </aside>
-        {children}
+        <div>{children}</div>
       </div>
     </div>
   );

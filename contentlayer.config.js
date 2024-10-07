@@ -7,7 +7,7 @@ import { codeImport } from "remark-code-import";
 import remarkGfm from "remark-gfm";
 import { visit } from "unist-util-visit";
 
-// import { rehypeComponent } from "./lib/rehype-component"
+import { rehypeComponent } from "./src/lib/rehype-component";
 // import { rehypeNpmCommand } from "./lib/rehype-npm-command"
 
 /** @type {import('contentlayer2/source-files').ComputedFields} */
@@ -46,7 +46,7 @@ export default makeSource({
     remarkPlugins: [remarkGfm, codeImport],
     rehypePlugins: [
       rehypeSlug,
-      // rehypeComponent,
+      rehypeComponent,
       () => (tree) => {
         visit(tree, (node) => {
           if (node?.type === "element" && node?.tagName === "pre") {
@@ -76,7 +76,7 @@ export default makeSource({
       //   {
       //     getHighlighter: async () => {
       //       const theme = await loadTheme(
-      //         path.join(process.cwd(), "/lib/highlighter-theme.json")
+      //         path.join(process.cwd(), "/src/lib/highlighter-theme.json")
       //       );
       //       return await getHighlighter({ theme });
       //     },
