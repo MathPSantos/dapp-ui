@@ -1,9 +1,8 @@
 import type { Metadata, Viewport } from "next";
 
-import "./globals.css";
+import "@/styles/globals.css";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
-import { ThemeProvider } from "@/components/theme-provider";
 import { Providers } from "@/components/providers";
 
 export const metadata: Metadata = {

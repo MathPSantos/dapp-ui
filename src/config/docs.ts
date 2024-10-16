@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 
-type NavItem = {
+export type NavItem = {
   title: string;
   href?: string;
   disabled?: boolean;
@@ -9,7 +9,7 @@ type NavItem = {
   label?: string;
 };
 
-type NavItemWithChildren = NavItem & {
+export type NavItemWithChildren = NavItem & {
   items: NavItemWithChildren[];
 };
 

@@ -1,39 +1,9 @@
-// @ts-nocheck
-"use client";
-
-import * as React from "react";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import { useMDXComponent } from "next-contentlayer2/hooks";
-import { NpmCommands } from "types/unist";
-
-// import { Event } from "@/lib/events"
-import { cn } from "@/lib/utils";
-// import { Callout } from "@/components/callout"
-// import { CodeBlockWrapper } from "@/components/code-block-wrapper"
-// import { ComponentExample } from "@/components/component-example"
-import { ComponentPreview } from "@/components/component-preview";
-// import { ComponentSource } from "@/components/component-source"
-// import { CopyButton, CopyNpmCommandButton } from "@/components/copy-button"
-// import { FrameworkDocs } from "@/components/framework-docs"
-// import { StyleWrapper } from "@/components/style-wrapper"
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "./ui/accordion";
-import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 
-const components = {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-  Alert,
-  AlertTitle,
-  AlertDescription,
+export const mdxComponents = {
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1
       className={cn(
@@ -155,25 +125,7 @@ const components = {
       {...props}
     />
   ),
-  pre: ({
-    className,
-    __rawString__,
-    __npmCommand__,
-    __yarnCommand__,
-    __pnpmCommand__,
-    __bunCommand__,
-    __withMeta__,
-    __src__,
-    __event__,
-    __style__,
-    ...props
-  }: React.HTMLAttributes<HTMLPreElement> & {
-    // __style__?: Style["name"]
-    __rawString__?: string;
-    __withMeta__?: boolean;
-    __src__?: string;
-    __event__?: Event["name"];
-  } & NpmCommands) => {
+  pre: ({ className, ...props }: React.HTMLAttributes<HTMLPreElement>) => {
     return (
       <>
         <pre
@@ -183,7 +135,7 @@ const components = {
           )}
           {...props}
         />
-        {__rawString__ && !__npmCommand__ && (
+        {/* {__rawString__ && !__npmCommand__ && (
           <CopyButton
             value={__rawString__}
             src={__src__}
@@ -204,7 +156,7 @@ const components = {
               }}
               className={cn("absolute right-4 top-4", __withMeta__ && "top-16")}
             />
-          )}
+          )} */}
       </>
     );
   },
@@ -219,7 +171,7 @@ const components = {
   ),
   Image,
   // Callout,
-  ComponentPreview,
+  // ComponentPreview,
   // ComponentExample,
   // ComponentSource,
   // AspectRatio,
@@ -280,35 +232,10 @@ const components = {
       {...props}
     />
   ),
-  FrameworkDocs: ({
-    className,
-    ...props
-  }: React.ComponentProps<typeof FrameworkDocs>) => (
-    <FrameworkDocs className={cn(className)} {...props} />
-  ),
   Link: ({ className, ...props }: React.ComponentProps<typeof Link>) => (
     <Link
       className={cn("font-medium underline underline-offset-4", className)}
       {...props}
     />
   ),
-  LinkedCard: ({ className, ...props }: React.ComponentProps<typeof Link>) => (
-    <Link
-      className={cn(
-        "flex w-full flex-col items-center rounded-xl border bg-card p-6 text-card-foreground shadow transition-colors hover:bg-muted/50 sm:p-10",
-        className
-      )}
-      {...props}
-    />
-  ),
 };
-
-export function Mdx({ code }: { code: string }) {
-  const Component = useMDXComponent(code);
-
-  return (
-    <div className="mdx">
-      <Component components={components} />
-    </div>
-  );
-}
