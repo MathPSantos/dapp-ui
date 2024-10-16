@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import path from "path";
 import { compileMDX } from "next-mdx-remote/rsc";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
-import { absoluteUrl, cn } from "@/lib/utils";
+import { absoluteUrl, cn, removeFrontmatter } from "@/lib/utils";
 import Balancer from "react-wrap-balancer";
 import { NavItem, NavItemWithChildren, docsConfig } from "@/config/docs";
 import { buttonVariants } from "@/components/ui/button";
@@ -18,6 +18,9 @@ import remarkGfm from "remark-gfm";
 import { visit } from "unist-util-visit";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import { getTableOfContents } from "@/lib/toc";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { DashboardTableOfContents } from "@/components/toc";
 
 type DocPageProps = {
   params: {
@@ -125,6 +128,7 @@ async function getDocPage({ params }: DocPageProps) {
     return {
       ...content,
       slug: `/docs/${slug.replace("/index", "")}`,
+      raw: removeFrontmatter(doc),
     };
   } catch (err) {
     console.error(err);
@@ -175,6 +179,8 @@ export default async function DocPage({ params }: DocPageProps) {
     notFound();
   }
 
+  const toc = await getTableOfContents(doc.raw);
+
   return (
     <main className="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
       <div className="mx-auto w-full min-w-0">
@@ -195,6 +201,13 @@ export default async function DocPage({ params }: DocPageProps) {
         </div>
         <div className="pb-12 pt-8">{doc.content}</div>
         <DocsPager slug={doc.slug} />
+      </div>
+      <div className="hidden text-sm xl:block">
+        <div className="sticky top-16 -mt-10 h-[calc(100vh-3.5rem)] pt-4">
+          <ScrollArea className="h-full pb-10">
+            {toc && <DashboardTableOfContents toc={toc} />}
+          </ScrollArea>
+        </div>
       </div>
     </main>
   );
