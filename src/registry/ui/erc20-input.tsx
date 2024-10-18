@@ -11,7 +11,7 @@ type ERC20InputProps = NumericalInputProps & {
   chainId?: number;
 };
 
-export const ERC20Input = React.forwardRef<HTMLInputElement, ERC20InputProps>(
+const ERC20Input = React.forwardRef<HTMLInputElement, ERC20InputProps>(
   ({ token, chainId, ...props }, ref) => {
     const { data, isLoading } = useErc20Token({ token, chainId });
 
@@ -32,6 +32,8 @@ export const ERC20Input = React.forwardRef<HTMLInputElement, ERC20InputProps>(
   }
 );
 ERC20Input.displayName = "ERC20Input";
+
+export { ERC20Input };
 
 function useErc20Token(params: { token?: string; chainId?: number }) {
   return useQuery({

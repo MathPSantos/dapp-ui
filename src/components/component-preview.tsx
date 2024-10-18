@@ -25,6 +25,8 @@ export function ComponentPreview({
   const Codes = Children.toArray(children) as ReactElement[];
   const Code = Codes[0];
 
+  console.log(Codes);
+
   const Preview = useMemo(() => {
     const Component = Index[name]?.component;
 
@@ -43,9 +45,7 @@ export function ComponentPreview({
   }, [name]);
 
   const codeString = useMemo(() => {
-    if (
-      typeof Code?.props["data-rehype-pretty-code-fragment"] !== "undefined"
-    ) {
+    if (typeof Code?.props["data-rehype-pretty-code-figure"] !== "undefined") {
       const [Button] = Children.toArray(Code.props.children) as ReactElement[];
       return Button?.props?.value || Button?.props?.__rawString__ || null;
     }
@@ -53,7 +53,10 @@ export function ComponentPreview({
 
   return (
     <div
-      className={cn("group relative my-4 flex flex-col gap-2", className)}
+      className={cn(
+        "group relative my-4 flex flex-col gap-2 [&_input]:max-w-xs",
+        className
+      )}
       {...props}
     >
       <Tabs defaultValue="preview" className="relative mr-auto w-full">
@@ -74,7 +77,7 @@ export function ComponentPreview({
           </TabsList>
         </div>
         <TabsContent value="preview" className="relative rounded-md border">
-          <div className="flex items-center justify-between p-4">
+          <div className="flex items-center justify-end p-4">
             <div className="flex items-center gap-2">
               <CopyButton
                 value={codeString}
@@ -83,16 +86,18 @@ export function ComponentPreview({
               />
             </div>
           </div>
-          <div className="preview flex min-h-[350px] w-full justify-center items-center p-10">
-            <Suspense
-              fallback={
-                <div className="flex w-full items-center justify-center text-sm text-muted-foreground">
-                  Loading...
-                </div>
-              }
-            >
-              {Preview}
-            </Suspense>
+          <div className="w-full">
+            <div className="preview flex min-h-[350px] w-full justify-center p-10 items-center">
+              <Suspense
+                fallback={
+                  <div className="flex w-full items-center justify-center text-sm text-muted-foreground">
+                    Loading...
+                  </div>
+                }
+              >
+                {Preview}
+              </Suspense>
+            </div>
           </div>
         </TabsContent>
         <TabsContent value="code">

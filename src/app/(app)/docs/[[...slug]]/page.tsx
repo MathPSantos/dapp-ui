@@ -19,6 +19,7 @@ import { getTableOfContents } from "@/lib/toc";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { DashboardTableOfContents } from "@/components/toc";
 import { DocsPager } from "@/components/pager";
+import { rehypeComponent } from "@/lib/rehype-component";
 
 type DocPageProps = {
   params: {
@@ -45,6 +46,7 @@ async function getDocPage({ params }: DocPageProps) {
           remarkPlugins: [remarkGfm, codeImport],
           rehypePlugins: [
             rehypeSlug,
+            rehypeComponent,
             () => (tree: any) => {
               visit(tree, (node: any) => {
                 if (node?.type === "element" && node?.tagName === "pre") {

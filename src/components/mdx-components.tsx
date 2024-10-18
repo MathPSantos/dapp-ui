@@ -2,6 +2,8 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+import { ComponentSource } from "./component-source";
+import { ComponentPreview } from "./component-preview";
 
 export const mdxComponents = {
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
@@ -171,9 +173,9 @@ export const mdxComponents = {
   ),
   Image,
   // Callout,
-  // ComponentPreview,
+  ComponentPreview,
   // ComponentExample,
-  // ComponentSource,
+  ComponentSource,
   // AspectRatio,
   // CodeBlockWrapper: ({ ...props }) => (
   //   <CodeBlockWrapper className="rounded-md border" {...props} />

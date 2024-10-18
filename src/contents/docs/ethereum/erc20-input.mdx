@@ -1,7 +1,9 @@
 ---
-title: Getting Started with Ethereum
-description: Description
+title: ERC20 Input
+description: ERC20 Input
 ---
+
+<ComponentPreview name="erc20-input-demo" description="A ERC20 Input" />
 
 ## Installation
 
@@ -11,10 +13,11 @@ description: Description
   <TabsTrigger value="cli">CLI</TabsTrigger>
   <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
+
 <TabsContent value="cli">
 
 ```bash
-npx shadcn@latest add radio-group
+npx shadcn@latest add erc20-input
 ```
 
 </TabsContent>
@@ -25,13 +28,9 @@ npx shadcn@latest add radio-group
 
 <Step>Install the following dependencies:</Step>
 
-```bash
-npm install @radix-ui/react-radio-group
-```
-
 <Step>Copy and paste the following code into your project.</Step>
 
-<ComponentSource name="button-demo" />
+<ComponentSource name="erc20-input" />
 
 <Step>Update the import paths to match your project setup.</Step>
 
@@ -40,10 +39,3 @@ npm install @radix-ui/react-radio-group
 </TabsContent>
 
 </Tabs>
-
-## Usage
-
-```tsx
-import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-```
