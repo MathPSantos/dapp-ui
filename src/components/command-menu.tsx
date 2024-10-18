@@ -10,9 +10,11 @@ import {
   CommandGroup,
   CommandInput,
   CommandItem,
+  CommandSeparator,
 } from "./ui/command";
 import { CommandList } from "cmdk";
-import { LaptopIcon, MoonIcon, SunIcon } from "lucide-react";
+import { CircleIcon, LaptopIcon, MoonIcon, SunIcon } from "lucide-react";
+import { docsConfig } from "@/config/docs";
 
 export function CommandMenu() {
   const router = useRouter();
@@ -64,6 +66,25 @@ export function CommandMenu() {
         <CommandInput placeholder="Type a command or search..." />
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
+          {docsConfig.sidebarNav.map((group) => (
+            <CommandGroup key={group.title} heading={group.title}>
+              {group.items.map((navItem) => (
+                <CommandItem
+                  key={navItem.href}
+                  value={navItem.title}
+                  onSelect={() => {
+                    runCommand(() => router.push(navItem.href as string))
+                  }}
+                >
+                  <div className="mr-2 flex h-4 w-4 items-center justify-center">
+                    <CircleIcon className="h-3 w-3" />
+                  </div>
+                  {navItem.title}
+                </CommandItem>
+              ))}
+            </CommandGroup>
+          ))}
+          <CommandSeparator />
           <CommandGroup heading="Theme">
             <CommandItem onSelect={() => runCommand(() => setTheme("light"))}>
               <SunIcon className="size-4 mr-2" />

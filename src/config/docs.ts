@@ -46,6 +46,11 @@ export const docsConfig: DocsConfig = {
       title: "Ethereum (EVM)",
       items: [
         {
+          title: "BigInt Input",
+          href: "/docs/ethereum/bigint-input",
+          items: [],
+        },
+        {
           title: "ERC20 Input",
           href: "/docs/ethereum/erc20-input",
           items: [],

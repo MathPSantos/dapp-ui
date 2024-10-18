@@ -1,9 +1,13 @@
 ---
 title: ERC20 Input
-description: ERC20 Input
+description: Display an input that handle ERC20 tokens decimals prepend symbol on the input.
 ---
 
-<ComponentPreview name="erc20-input-demo" description="A ERC20 Input" />
+<ComponentPreview
+  name="erc20-input-demo"
+  className="[&_input]:max-w-xs"
+  description="A ERC20 Input"
+/>
 
 ## Installation
 
@@ -39,3 +43,21 @@ npx shadcn@latest add erc20-input
 </TabsContent>
 
 </Tabs>
+
+## Examples
+
+### Default
+
+<ComponentPreview
+  name="erc20-input-demo"
+  className="[&_input]:max-w-xs"
+  description="A ERC20 Input"
+/>
+
+### Native Token
+
+<ComponentPreview
+  name="erc20-input-native"
+  className="[&_input]:max-w-xs"
+  description="A ERC20 Input"
+/>

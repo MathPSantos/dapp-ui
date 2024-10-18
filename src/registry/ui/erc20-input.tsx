@@ -2,11 +2,11 @@ import * as React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { readContracts } from "@wagmi/core";
 
-import { NumericalInput, NumericalInputProps } from "./numerical-input";
+import { BigIntInput, BigIntInputProps } from "./bigint-input";
 import { config } from "@/lib/wagmi";
 import { erc20Abi } from "viem";
 
-type ERC20InputProps = NumericalInputProps & {
+type ERC20InputProps = BigIntInputProps & {
   token?: string;
   chainId?: number;
 };
@@ -16,12 +16,17 @@ const ERC20Input = React.forwardRef<HTMLInputElement, ERC20InputProps>(
     const { data, isLoading } = useErc20Token({ token, chainId });
 
     const prependSymbol = React.useMemo(
-      () => (data?.symbol ? `${data.symbol} ` : undefined),
-      [data?.symbol]
+      () =>
+        props.prependSymbol
+          ? `${props.prependSymbol} `
+          : data?.symbol
+          ? `${data.symbol} `
+          : undefined,
+      [data?.symbol, props.prependSymbol]
     );
 
     return (
-      <NumericalInput
+      <BigIntInput
         {...props}
         ref={ref}
         prependSymbol={prependSymbol}

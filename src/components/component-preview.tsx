@@ -53,10 +53,7 @@ export function ComponentPreview({
 
   return (
     <div
-      className={cn(
-        "group relative my-4 flex flex-col gap-2 [&_input]:max-w-xs",
-        className
-      )}
+      className={cn("group relative my-4 flex flex-col gap-2", className)}
       {...props}
     >
       <Tabs defaultValue="preview" className="relative mr-auto w-full">
