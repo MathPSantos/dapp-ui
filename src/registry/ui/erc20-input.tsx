@@ -5,6 +5,8 @@ import { readContracts } from "@wagmi/core";
 import { BigIntInput, BigIntInputProps } from "./bigint-input";
 import { config } from "@/lib/wagmi";
 import { erc20Abi } from "viem";
+import { cn } from "@/lib/utils";
+import { Skeleton } from "@/components/ui/skeleton";
 
 type ERC20InputProps = BigIntInputProps & {
   token?: string;
@@ -12,27 +14,21 @@ type ERC20InputProps = BigIntInputProps & {
 };
 
 const ERC20Input = React.forwardRef<HTMLInputElement, ERC20InputProps>(
-  ({ token, chainId, ...props }, ref) => {
+  ({ token, chainId, className, ...props }, ref) => {
     const { data, isLoading } = useErc20Token({ token, chainId });
 
-    const prependSymbol = React.useMemo(
-      () =>
-        props.prependSymbol
-          ? `${props.prependSymbol} `
-          : data?.symbol
-          ? `${data.symbol} `
-          : undefined,
-      [data?.symbol, props.prependSymbol]
-    );
-
     return (
-      <BigIntInput
-        {...props}
-        ref={ref}
-        prependSymbol={prependSymbol}
-        disabled={isLoading || props.disabled}
-        maxDecimals={data?.decimals}
-      />
+      <div className="flex rounded-lg">
+        <BigIntInput
+          ref={ref}
+          maxDecimals={data?.decimals}
+          className={cn("order-1 -ml-px rounded-l-none peer", className)}
+          {...props}
+        />
+        <span className="order-0 -z-10 inline-flex items-center rounded-l-lg border border-input bg-background px-3 text-sm text-muted-foreground peer-disabled:opacity-50 border-r-0">
+          {isLoading ? <Skeleton className="h-5 w-6" /> : data?.symbol}
+        </span>
+      </div>
     );
   }
 );

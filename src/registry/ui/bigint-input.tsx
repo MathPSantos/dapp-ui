@@ -9,7 +9,6 @@ export type BigIntInputProps = Omit<
   value?: bigint | null;
   maxDecimals?: number;
   onChange?: (value: bigint) => void;
-  prependSymbol?: string;
 };
 
 export const BigIntInput = React.forwardRef<HTMLInputElement, BigIntInputProps>(
@@ -20,7 +19,6 @@ export const BigIntInput = React.forwardRef<HTMLInputElement, BigIntInputProps>(
       onChange,
       value,
       placeholder = "0",
-      prependSymbol,
       ...props
     },
     ref
@@ -50,31 +48,16 @@ export const BigIntInput = React.forwardRef<HTMLInputElement, BigIntInputProps>(
       return inputValue.replace(searchValue, replaceValue);
     }, [maxDecimals, inputValue]);
 
-    const _value = React.useMemo(() => {
-      return prependSymbol
-        ? prependSymbol + valueFormattedWithLocale
-        : valueFormattedWithLocale;
-    }, [prependSymbol, valueFormattedWithLocale]);
-
     return (
       <input
         {...props}
         ref={ref}
-        value={_value}
+        value={valueFormattedWithLocale}
         onChange={(event) => {
-          if (prependSymbol) {
-            const value = event.target.value;
-            const formattedValue = value.toString().includes(prependSymbol)
-              ? value
-                  .toString()
-                  .slice(prependSymbol.length, value.toString().length + 1)
-              : value;
-            enforcer(formattedValue.replace(/,/g, "."));
-          }
           enforcer(event.target.value.replace(/,/g, "."));
         }}
         className={cn(
-          "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+          "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/30 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
           className
         )}
         inputMode="decimal"
