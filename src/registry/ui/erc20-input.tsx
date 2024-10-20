@@ -11,10 +11,11 @@ import { Skeleton } from "@/components/ui/skeleton";
 type ERC20InputProps = BigIntInputProps & {
   token?: string;
   chainId?: number;
+  prependSymbol?: string;
 };
 
 const ERC20Input = React.forwardRef<HTMLInputElement, ERC20InputProps>(
-  ({ token, chainId, className, ...props }, ref) => {
+  ({ token, chainId, className, prependSymbol, ...props }, ref) => {
     const { data, isLoading } = useErc20Token({ token, chainId });
 
     return (
@@ -26,7 +27,11 @@ const ERC20Input = React.forwardRef<HTMLInputElement, ERC20InputProps>(
           {...props}
         />
         <span className="order-0 -z-10 inline-flex items-center rounded-l-lg border border-input bg-background px-3 text-sm text-muted-foreground peer-disabled:opacity-50 border-r-0">
-          {isLoading ? <Skeleton className="h-5 w-6" /> : data?.symbol}
+          {isLoading ? (
+            <Skeleton className="h-5 w-6" />
+          ) : (
+            prependSymbol || data?.symbol
+          )}
         </span>
       </div>
     );
