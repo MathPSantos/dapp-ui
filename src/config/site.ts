@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "daap/ui",
+  name: "dapp/ui",
   url: "https://daap.ui",
   ogImage: "https://daap.ui/og.jpg",
   description:
