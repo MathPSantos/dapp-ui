@@ -9,7 +9,6 @@ import { Metadata } from "next";
 import { siteConfig } from "@/config/site";
 import { mdxComponents } from "@/components/mdx-components";
 import rehypePrettyCode from "rehype-pretty-code";
-import theme from "@/lib/highlighter-theme.json";
 import { codeImport } from "remark-code-import";
 import remarkGfm from "remark-gfm";
 import { visit } from "unist-util-visit";
@@ -74,7 +73,7 @@ async function getDocPage({ params }: DocPageProps) {
             [
               rehypePrettyCode,
               {
-                theme,
+                theme: "github-dark",
                 keepBackground: false,
               },
             ],

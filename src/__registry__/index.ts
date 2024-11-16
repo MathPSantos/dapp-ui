@@ -27,4 +27,16 @@ export const Index: Record<string, any> = {
     files: ["src/registry/example/erc20-input-native.tsx"],
     component: lazy(() => import("@/registry/example/erc20-input-native")),
   },
+  "connect-wallet-dialog": {
+    name: "connect-wallet-dialog",
+    files: ["src/registry/ui/connect-wallet-dialog.tsx"],
+    component: lazy(() => import("@/registry/ui/connect-wallet-dialog")),
+  },
+  "connect-wallet-dialog-demo": {
+    name: "connect-wallet-dialog-demo",
+    files: ["src/registry/example/connect-wallet-dialog-demo.tsx"],
+    component: lazy(
+      () => import("@/registry/example/connect-wallet-dialog-demo")
+    ),
+  },
 };

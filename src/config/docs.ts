@@ -45,6 +45,11 @@ export const docsConfig: DocsConfig = {
     {
       title: "Ethereum (EVM)",
       items: [
+        // {
+        //   title: "Getting  Started",
+        //   href: "/docs/ethereum",
+        //   items: [],
+        // },
         {
           title: "BigInt Input",
           href: "/docs/ethereum/bigint-input",
@@ -55,16 +60,11 @@ export const docsConfig: DocsConfig = {
           href: "/docs/ethereum/erc20-input",
           items: [],
         },
-        // {
-        //   title: "Getting  Started",
-        //   href: "/docs/ethereum",
-        //   items: [],
-        // },
-        // {
-        //   title: "Connect Wallet",
-        //   href: "/docs/ethereum/connect-wallet",
-        //   items: [],
-        // },
+        {
+          title: "Connect Wallet Dialog",
+          href: "/docs/ethereum/connect-wallet-dialog",
+          items: [],
+        },
         // {
         //   title: "ENS Name Resolver",
         //   href: "/docs/ethereum/ens-name-resolver",
