@@ -65,6 +65,11 @@ export const docsConfig: DocsConfig = {
           href: "/docs/ethereum/connect-wallet-dialog",
           items: [],
         },
+        {
+          title: "Wallet address resolver",
+          href: "/docs/ethereum/wallet-address-resolver",
+          items: [],
+        },
         // {
         //   title: "ENS Name Resolver",
         //   href: "/docs/ethereum/ens-name-resolver",

@@ -39,4 +39,26 @@ export const Index: Record<string, any> = {
       () => import("@/registry/example/connect-wallet-dialog-demo")
     ),
   },
+  "wallet-address-resolver": {
+    name: "wallet-address-resolver",
+    files: ["src/registry/ui/wallet-address-resolver.tsx"],
+    component: lazy(() => import("@/registry/ui/wallet-address-resolver")),
+  },
+  "wallet-address-resolver-demo": {
+    name: "wallet-address-resolver-demo",
+    files: ["src/registry/example/wallet-address-resolver-demo.tsx"],
+    component: lazy(
+      () => import("@/registry/example/wallet-address-resolver-demo")
+    ),
+  },
+  "wallet-address-resolver-with-button-demo": {
+    name: "wallet-address-resolver-with-button-demo",
+    files: [
+      "src/registry/example/wallet-address-resolver-with-button-demo.tsx",
+    ],
+    component: lazy(
+      () =>
+        import("@/registry/example/wallet-address-resolver-with-button-demo")
+    ),
+  },
 };
